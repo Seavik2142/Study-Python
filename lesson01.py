@@ -252,8 +252,122 @@
 #         print("Invalid choice. Please try again.")
 
 
+# class BankAccount:
+#     def __init__(self , balance):
+#         self.balance = balance
+
+
+# account = BankAccount(100)
+
+# print(account.balance)  # Output: 100
+
+# account.balance = -500
+
+# print(account.balance)  # Output: -500 (This should not be allowed)
 
 
 
 
 
+# class BankAccount:
+#     def __init__(self , balance):
+#         if balance >= 0:
+#             self.__balance = balance
+#         else:
+#             self.__balance = 0
+
+#     def deposit(self , amount):
+#         if amount > 0:
+#             self.__balance += amount
+#             print(f"Deposited: ${amount}. New balance: ${self.__balance}.")
+#         else:
+#             print("Deposit amount must be positive > 0.")
+
+#     def withdraw(self , amount):
+#         if amount <= 0:
+#             print("Withdrawal amount must be positive > 0.")
+
+#         elif amount > self.__balance:
+#             print("Insufficient funds for withdrawal.")
+#         else:
+#             self.__balance -= amount
+#             print(f"Withdrew: ${amount}. New balance: ${self.__balance}.")
+
+#     def Show_balance(self):
+#         print(f"Current balance: ${self.__balance}.")
+
+
+# account = BankAccount(100)
+
+# account.Show_balance()  # Output: Current balance: $100.
+# account.deposit(50)     # Output: Deposited: $50. New balance: $150.
+# account.withdraw(30)    # Output: Withdrew: $30. New balance:
+# account.Show_balance()
+
+
+
+# class Student:
+#     def __init__(self , score):
+#         self.__score = score
+
+#     @property
+#     def score(self):
+#         return self.__score
+
+
+# student1 = Student(85) 
+# print(student1.score)  # Output: 85
+
+
+# class Student:
+#     def __init__(self , score):
+#         self.score = score
+
+#     @property
+#     def score(self):
+#         return self.__score
+
+#     @score.setter
+#     def score(self , value):
+#         if 0 <= value <= 100:
+#             self.__score = value
+#         else:
+#             print("Score must be between 0 and 100.")
+
+# student1 = Student(85)
+# print(student1.score)  # Output: 85
+
+# student1.score = 95
+# print(student1.score)  # Output: 95
+
+# student1.score = 150  # Invalid score
+
+
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"Deposited: ${amount}. New balance: ${self.__balance}.")
+        else:
+            print("Deposit must be greater than 0.")
+    def withdraw(self, amount):
+        if amount <= 0:
+            print("Withdrawal must be greater than 0.")
+        elif amount > self.__balance:
+            print("Insufficient funds for withdrawal.")
+        else:
+            self.__balance -= amount
+            print(f"Withdrew: ${amount}. New balance: ${self.__balance}.")
+        
+    def show_balance(self):
+        print(f"Current balance: ${self.__balance}.")
+        
+
+
+account = BankAccount(100)
+account.deposit(-30)
+account.withdraw(130)    
+account.show_balance()
