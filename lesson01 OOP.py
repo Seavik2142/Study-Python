@@ -656,20 +656,313 @@
 # print("Password valid:", admin.check_password("wrong_password"))
 
 
+# import hashlib
+# import secrets
+# import hmac
+
+
+# class User:
+#     def __init__(self, username, password):
+#         if not isinstance(username, str) or not username.strip():
+#             raise ValueError("Username cannot be empty.")
+
+#         if not isinstance(password, str) or len(password) < 8:
+#             raise ValueError("Password must contain at least 8 characters.")
+
+#         self.username = username
+#         self.__salt = secrets.token_bytes(16)
+#         self.__password_hash = self.__hash_password(password)
+
+#     def __hash_password(self, password):
+#         return hashlib.scrypt(
+#             password.encode("utf-8"),
+#             salt=self.__salt,
+#             n=2**14,
+#             r=8,
+#             p=1
+#         )
+
+#     def check_password(self, password):
+#         if not isinstance(password, str):
+#             return False
+
+#         candidate_hash = self.__hash_password(password)
+
+#         return hmac.compare_digest(
+#             self.__password_hash,
+#             candidate_hash
+#         )
+
+#     def show_info(self):
+#         print(f"Username: {self.username}")
+#         print("Password: [HIDDEN]")
+
+#     def get_role(self):
+#         return "User"
+
+
+# class Admin(User):
+#     def __init__(self, username, password, admin_level):
+#         super().__init__(username, password)
+
+#         if type(admin_level) is not int or admin_level < 1:
+#             raise ValueError("Admin level must be a positive integer.")
+
+#         self.admin_level = admin_level
+
+#     def get_role(self):
+#         return "Admin"
+
+#     def show_admin_info(self):
+#         self.show_info()
+#         print(f"Role: {self.get_role()}")
+#         print(f"Admin Level: {self.admin_level}")
+
+
+# class Staff(User):
+#     def __init__(self, username, password, staff_id):
+#         super().__init__(username, password)
+
+#         if type(staff_id) is not str or not staff_id.strip():
+#             raise ValueError("Staff ID cannot be empty.")
+
+#         self.staff_id = staff_id
+
+#     def get_role(self):
+#         return "Staff"
+
+#     def show_staff_info(self):
+#         self.show_info()
+#         print(f"Role: {self.get_role()}")
+#         print(f"Staff ID: {self.staff_id}")
+
+# class Student(User):
+#     def __init__(self, username, password, student_id):
+#         super().__init__(username, password)
+
+#         if not isinstance(student_id, str) or not student_id.strip():
+#             raise ValueError("Student ID cannot be empty.")
+
+#         self.student_id = student_id
+
+#     def get_role(self):
+#         return "Student"
+
+#     def show_student_info(self):
+#         self.show_info()
+#         print(f"Role: {self.get_role()}")
+#         print(f"Student ID: {self.student_id}")
+
+# while True:
+#     print("\nMenu:")
+#     print("1. Create Admin")
+#     print("2. Create Staff")
+#     print("3. Create Student")
+#     print("4. Exit")
+
+#     choice = input("Choose an option 1-4: ")
+
+#     if choice == "1":
+#         username = input("Enter admin username: ")
+#         password = input("Enter admin password (min 8 characters): ")
+#         admin_level = int(input("Enter admin level (positive integer): "))
+#         try:
+#             username = input("Enter admin username: ")
+#             password = input("Enter admin password: ")
+#             admin_level = int(input("Enter admin level: "))
+
+#             admin = Admin(username, password, admin_level)
+#             admin.show_admin_info()
+
+#         except ValueError as e:
+#             print(f"Error: {e}")
+#     elif choice == "2":
+#         username = input("Enter staff username: ")
+#         password = input("Enter staff password (min 8 characters): ")
+#         staff_id = input("Enter staff ID: ")
+#         try:
+#             staff = Staff(username, password, staff_id)
+#             staff.show_staff_info()
+#         except ValueError as e:
+#             print(f"Error: {e}")
+
+#     elif choice == "3":
+#         username = input("Enter student username: ")
+#         password = input("Enter student password (min 8 characters): ")
+#         student_id = input("Enter student ID: ")
+#         try:
+#             student = Student(username, password, student_id)
+#             student.show_student_info()
+#         except ValueError as e:
+#             print(f"Error: {e}")
+
+#     elif choice == "4":
+#         print("Goodbye!")
+#         break
+
+#     else:
+#         print("Invalid choice. Please try again.")
+
+
+
+
+# class User:
+#     def __init__(self, username, password):
+#         if not isinstance(username, str) or not username.strip():
+#             raise ValueError("Username cannot be empty.")
+#         if not isinstance(password, str) or len(password) < 8:
+#             raise ValueError("Password must contain at least 8 characters.")
+
+#         self.username = username
+#         self.__password = password
+
+#     def show_info(self):
+#         print(f"Username: {self.username}")
+#         print("Password: [HIDDEN]")
+
+#     def check_password(self, password):
+#         return self.__password == password
+
+#     def get_role(self):
+#         return "User"
+# class Admin(User):
+#     def get_role(self):
+#         return "Admin"
+
+# class Staff(User):
+#     def get_role(self):
+#         return "Staff"
+
+# class Student(User):
+#     def get_role(self):
+#         return "Student"
+
+# users = [
+#     Admin("admin", "adminpass123"),
+#     Staff("staff", "staffpass123"),
+#     Student("student", "studentpass123")
+# ]
+
+# for user in users:
+#     print(user.get_role())
+
+# from abc import ABC, abstractmethod
+
+# class Payment(ABC):
+#     @abstractmethod
+#     def process_payment(self, amount):
+#         pass
+
+
+# class ABA(Payment):
+#     def process_payment(self, amount):
+#         print(f"Processing ABA payment of ${amount}.")
+
+# class Acleda(Payment):
+#     def process_payment(self, amount):
+#         print(f"Processing Acleda payment of ${amount}.")
+
+# payments = [
+#     ABA(), 
+#     Acleda()
+# ]
+
+# amount = [100, 200]
+
+# for payment, amt in zip(payments, amount):
+#     payment.process_payment(amt)
+
+# class Engine:
+#     def start(self):
+#         print("Engine started.")
+
+#     def stop(self):
+#         print("Engine stopped.")
+
+# class Car:
+#     def __init__(self):
+#         self.engine = Engine()
+
+#     def start(self):
+#         self.engine.start()
+#         print("Car is ready to go!")
+
+#     def stop(self):
+#         self.engine.stop()
+#         print("Car has stopped.")
+
+# while True:
+#     print("\nMenu:")
+#     print("1. Start the car")
+#     print("2. Stop the car")
+#     print("3. Exit")
+
+#     choice = input("Choose an option 1-3: ")
+
+#     if choice == "1":
+#         car = Car()
+#         car.start()
+#     elif choice == "2":
+#         car.stop()
+#     elif choice == "3":
+#         print("Goodbye!")
+#         break
+#     else:
+#         print("Invalid choice. Please try again.")
+
+
+
+# class CPU:
+#     def __init__(self, model):
+#         self.model = model
+
+#     def process(self):
+#         print(f"{self.model} CPU is processing data.")
+
+# class Computer:
+#     def __init__(self, cpu_model):
+#         self.cpu = CPU(cpu_model)
+
+#     def start(self):
+#         self.cpu.process()
+#         print("Computer is starting.")
+
+# while True:
+#     print("\nMenu:")
+#     print("1. Start the computer")
+#     print("2. Exit")
+
+#     choice = input("Choose an option 1-2: ")
+
+#     if choice == "1":
+#         cpu_model = input("Enter CPU model: ")
+#         computer = Computer(cpu_model)
+#         computer.start()
+#     elif choice == "2":
+#         print("Goodbye!")
+#         break
+#     else:
+#         print("Invalid choice. Please try again.")
+
+
+
 import hashlib
 import secrets
 import hmac
 
 
+# Parent Class
 class User:
     def __init__(self, username, password):
         if not isinstance(username, str) or not username.strip():
             raise ValueError("Username cannot be empty.")
 
         if not isinstance(password, str) or len(password) < 8:
-            raise ValueError("Password must contain at least 8 characters.")
+            raise ValueError(
+                "Password must contain at least 8 characters."
+            )
 
-        self.username = username
+        self.username = username.strip()
         self.__salt = secrets.token_bytes(16)
         self.__password_hash = self.__hash_password(password)
 
@@ -701,41 +994,42 @@ class User:
         return "User"
 
 
+# Admin Class
 class Admin(User):
     def __init__(self, username, password, admin_level):
         super().__init__(username, password)
 
-        if not isinstance(admin_level, int) or admin_level < 1:
-            raise ValueError("Admin level must be a positive integer.")
+        if type(admin_level) is not int or admin_level < 1:
+            raise ValueError(
+                "Admin level must be a positive integer."
+            )
 
         self.admin_level = admin_level
 
     def get_role(self):
         return "Admin"
 
-    def show_admin_info(self):
-        self.show_info()
-        print(f"Role: {self.get_role()}")
-        print(f"Admin Level: {self.admin_level}")
 
-
-class Staff(User):
-    def __init__(self, username, password, staff_id):
+# Teacher Class
+class Teacher(User):
+    def __init__(self, username, password, teacher_id):
         super().__init__(username, password)
 
-        if not isinstance(staff_id, str) or not staff_id.strip():
-            raise ValueError("Staff ID cannot be empty.")
+        if not isinstance(teacher_id, str) or not teacher_id.strip():
+            raise ValueError("Teacher ID cannot be empty.")
 
-        self.staff_id = staff_id
+        self.teacher_id = teacher_id.strip()
 
     def get_role(self):
-        return "Staff"
+        return "Teacher"
 
-    def show_staff_info(self):
+    def show_teacher_info(self):
         self.show_info()
         print(f"Role: {self.get_role()}")
-        print(f"Staff ID: {self.staff_id}")
+        print(f"Teacher ID: {self.teacher_id}")
 
+
+# Student Class
 class Student(User):
     def __init__(self, username, password, student_id):
         super().__init__(username, password)
@@ -743,7 +1037,7 @@ class Student(User):
         if not isinstance(student_id, str) or not student_id.strip():
             raise ValueError("Student ID cannot be empty.")
 
-        self.student_id = student_id
+        self.student_id = student_id.strip()
 
     def get_role(self):
         return "Student"
@@ -753,48 +1047,106 @@ class Student(User):
         print(f"Role: {self.get_role()}")
         print(f"Student ID: {self.student_id}")
 
+
+# Lists to store objects while the program is running
+teachers = []
+student_list = []
+
+
+# Main Menu
 while True:
-    print("\nMenu:")
-    print("1. Create Admin")
-    print("2. Create Staff")
-    print("3. Create Student")
-    print("4. Exit")
+    print("\n===== Norton University =====")
+    print("1. Add Teacher")
+    print("2. Add Student")
+    print("3. Show All Teachers")
+    print("4. Show All Students")
+    print("5. Search Teachers And Students By ID.")
+    print("6. Exit")
 
-    choice = input("Choose an option 1-4: ")
+    choice = input("Please choose an option (1-5): ").strip()
 
-    if choice == "1":
-        username = input("Enter admin username: ")
-        password = input("Enter admin password (min 8 characters): ")
-        admin_level = int(input("Enter admin level (positive integer): "))
-        try:
-            admin = Admin(username, password, admin_level)
-            admin.show_admin_info()
-        except ValueError as e:
-            print(f"Error: {e}")
+    try:
+        if choice == "1":
+            username = input("Enter teacher username: ")
+            password = input("Enter password (min 8 characters): ")
+            teacher_id = input("Enter teacher ID: ")
 
-    elif choice == "2":
-        username = input("Enter staff username: ")
-        password = input("Enter staff password (min 8 characters): ")
-        staff_id = input("Enter staff ID: ")
-        try:
-            staff = Staff(username, password, staff_id)
-            staff.show_staff_info()
-        except ValueError as e:
-            print(f"Error: {e}")
+            teacher = Teacher(username, password, teacher_id)
+            teachers.append(teacher)
 
-    elif choice == "3":
-        username = input("Enter student username: ")
-        password = input("Enter student password (min 8 characters): ")
-        student_id = input("Enter student ID: ")
-        try:
+            print("Teacher added successfully!")
+
+        elif choice == "2":
+            username = input("Enter student username: ")
+            password = input("Enter password (min 8 characters): ")
+            student_id = input("Enter student ID: ")
+
             student = Student(username, password, student_id)
-            student.show_student_info()
-        except ValueError as e:
-            print(f"Error: {e}")
+            student_list.append(student)
 
-    elif choice == "4":
-        print("Goodbye!")
-        break
+            print("Student added successfully!")
 
-    else:
-        print("Invalid choice. Please try again.")
+        elif choice == "3":
+            print("\n===== Teacher List =====")
+
+            if not teachers:
+                print("No teachers found.")
+            else:
+                for teacher in teachers:
+                    teacher.show_teacher_info()
+                    print("-" * 30)
+
+        elif choice == "4":
+            print("\n===== Student List =====")
+
+            if not student_list:
+                print("No students found.")
+            else:
+                for student in student_list:
+                    student.show_student_info()
+                    print("-" * 30)
+        elif choice == "5":
+            while True:
+                print("1. Teacher ID")
+                print("2. Student ID")
+                choice = input("Please choose an option (1 & 2): ").strip()
+                if choice == "1":
+                    teacher_id = input("Enter Teacher ID to Search:  ")
+                    found = False
+
+                    for teacher in teachers:
+                        if teacher.teacher_id == teacher_id:
+                            print("Teacher Found!")
+                            teacher.show_teacher_info()
+                            found = True
+                            break
+                        if not found:
+                            print("Teacher not found.")
+
+                elif choice == "2":
+                    student_id = input("Enter Student ID to Search ")
+                    found = False
+
+                    for student in student:
+                        if student.student_id ==student_id:
+                            print("nStudent Found!")
+                            student.show_student_info()
+                            found = True
+                            break
+                        if not found:
+                            print("Student not found")
+                    
+                else:
+                    print("Invalid choice. Please choose 1-5.")
+                    
+
+
+        elif choice == "6":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please choose 1-5.")
+
+    except ValueError as error:
+        print(f"Error: {error}")
