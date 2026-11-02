@@ -964,42 +964,42 @@
 # print(result)
 
 
-class University:
-    university_name = " Norton University"
-    total_student = 0 
+# class University:
+#     university_name = " Norton University"
+#     total_student = 0 
 
-    def __init__(self , name):
-        self.name = name
-        University.total_student += 1
-
-
-
-
-    def show_student(self):
-        print(f"Student Name: {self.name}")
-
-
-
-    @classmethod
-    def show_total_students(cls):
-        print(f"Total Students: {cls.total_student}")
-
-
-
-    @staticmethod
-
-    def is_valid_name(name):
-        return isinstance(name , str) and len(name.strip()) >= 3
+#     def __init__(self , name):
+#         self.name = name
+#         University.total_student += 1
 
 
 
 
-student1 = University("Seavik")
-student2 = University("Hello")
+#     def show_student(self):
+#         print(f"Student Name: {self.name}")
 
 
-student1.show_student()
 
-University.show_total_students()
+#     @classmethod
+#     def show_total_students(cls):
+#         print(f"Total Students: {cls.total_student}")
 
-print(University.is_valid_name("Seavik"))
+
+
+#     @staticmethod
+
+#     def is_valid_name(name):
+#         return isinstance(name , str) and len(name.strip()) >= 3
+
+
+
+
+# student1 = University("Seavik")
+# student2 = University("Hello")
+
+
+# student1.show_student()
+
+# University.show_total_students()
+
+# print(University.is_valid_name("Seavik"))
